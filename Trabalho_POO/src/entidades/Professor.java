@@ -32,5 +32,8 @@ public class Professor {
 		this.departamento = departamento;
 	}
 	
+	public String toString() {
+		return super.toString();
+	}
 	
 }
