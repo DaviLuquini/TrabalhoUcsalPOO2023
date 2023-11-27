@@ -32,7 +32,7 @@ public class Aluno {
 	}
 	
 	public String toString() {
-		return super.toString();
+			return "Aluno [id=" + id + ", matricula=" + matricula + ", nome=" + nome + ", Status=" + Status + "]";
 	}
 	
 }
