@@ -26,7 +26,7 @@ public class Disciplina {
 	}
 	
 	public String toString() {
-		return super.toString();
+		return "Disciplina [id=" + id + ", sigla=" + sigla + ", descricao=" + descricao + "]";
 	}
 
 }
