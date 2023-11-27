@@ -25,7 +25,8 @@ public class Disciplina {
 		this.descricao = descricao;
 	}
 	
-	
-
+	public String toString() {
+		return super.toString();
+	}
 
 }
