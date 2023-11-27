@@ -33,7 +33,7 @@ public class Professor {
 	}
 	
 	public String toString() {
-		return super.toString();
+		return "Professor [id=" + id + ", nome=" + nome + ", status=" + status + ", departamento=" + departamento + "]";
 	}
 	
 }
