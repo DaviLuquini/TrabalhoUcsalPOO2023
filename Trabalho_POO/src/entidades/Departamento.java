@@ -25,7 +25,6 @@ public class Departamento {
 		this.descricao = descricao;
 	}
 	public String toString() {
-		return super.toString();
+		return "Departamento [id=" + id + ", sigla=" + sigla + ", descricao=" + descricao + "]";
 	}
-
 }
