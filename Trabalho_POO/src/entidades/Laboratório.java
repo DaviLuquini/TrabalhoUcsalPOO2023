@@ -42,7 +42,8 @@ public class Laboratório {
 	}
 	
 	public String toString() {
-		return super.toString();
+		return "Laboratorio [id=" + id + ", capacidade=" + capacidade + ", maquina=" + maquina + ", status=" + status
+				+ "]";
 	}
 	
 }
