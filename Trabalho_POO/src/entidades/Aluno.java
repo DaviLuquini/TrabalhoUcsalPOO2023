@@ -31,5 +31,6 @@ public class Aluno {
 		Status = status;
 	}
 	
-
+	sysout
+	
 }
