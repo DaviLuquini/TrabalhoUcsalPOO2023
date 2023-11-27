@@ -31,6 +31,8 @@ public class Aluno {
 		Status = status;
 	}
 	
-	sysout
+	public String toString() {
+		return super.toString();
+	}
 	
 }
