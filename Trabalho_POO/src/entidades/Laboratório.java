@@ -41,5 +41,8 @@ public class Laboratório {
 		this.id = id;
 	}
 	
+	public String toString() {
+		return super.toString();
+	}
 	
 }
