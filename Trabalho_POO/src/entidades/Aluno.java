@@ -4,8 +4,6 @@ public class Aluno extends Pessoa{
   
   	private Integer id;
 	private Integer matricula;
-	private String nome;
-	private String Status;
 	public Integer getId() {
 		return id;
 	}
