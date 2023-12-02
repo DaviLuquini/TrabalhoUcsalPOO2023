@@ -1,6 +1,6 @@
 package entidades;
 
-public class Aluno {
+public class Aluno extends Pessoa{
   
   	private Integer id;
 	private Integer matricula;
