@@ -45,4 +45,9 @@ public class Execucao {
         
         scanner.close();
     }
+     @Override
+    public String toString() {
+    	
+    	return super.toString();
+    }
 }
