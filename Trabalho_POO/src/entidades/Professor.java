@@ -1,6 +1,6 @@
 package entidades;
 
-public class Professor {
+public class Professor extends Pessoa{
 	
 	private Integer id;
 	private String nome;
