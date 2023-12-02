@@ -1,6 +1,6 @@
 package entidades;
 
-public class Laboratório {
+public class Laboratorio {
 	
 		private Integer id;
 	private int capacidade;
