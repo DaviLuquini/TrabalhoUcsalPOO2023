@@ -3,8 +3,6 @@ package entidades;
 public class Professor extends Pessoa{
 	
 	private Integer id;
-	private String nome;
-	private String status;
 	private Departamento departamento;
 	
 	public Integer getId() {
