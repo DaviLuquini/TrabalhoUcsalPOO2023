@@ -1,53 +1,26 @@
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.List;
 
 public class Execucao {
+    public static void main(String[] args) {
+        Base bs = new Base();
 
-    public static void main(String[] args) throws ParseException {
-        
-        Base base = new Base();
-
-        SolicitarLaboratorio solicitador = new SolicitarLaboratorio(base);
-
-        Scanner scanner = new Scanner(System.in);
-
-        while (true) {
-            System.out.println("Informe qual o laboratório deseja reservar? (ou 'sair' para encerrar)");
-            String descricaoLaboratorio = scanner.nextLine();
-
-            if (descricaoLaboratorio.equalsIgnoreCase("sair")) {
-                break;
-            }
-
-            System.out.println("Informe o nome do professor:");
-            String nomeProfessor = scanner.nextLine();
-
-            System.out.println("Informe a sigla da disciplina:");
-            String siglaDisciplina = scanner.nextLine();
-
-            System.out.println("Informe a data (dd/mm/aaaa) inicial de uso do laboratório:");
-            String dataStr = scanner.nextLine();
-            Date data = new SimpleDateFormat("dd/MM/yyyy").parse(dataStr);
-
-            System.out.println("Informe a hora (HH:mm) inicial de uso do laboratório:");
-            String horaStr = scanner.nextLine();
-
-            System.out.println("Informe por quantos minutos deseja usar o laboratório?");
-            int tempo = scanner.nextInt();
-            scanner.nextLine(); 
-
-            
-            solicitador.solicitarReserva(descricaoLaboratorio, nomeProfessor, siglaDisciplina, data, tempo);
+        for (Laboratorio lab : bs.getLaboratorios()) {
+            System.out.println(lab);
         }
 
-        
-        scanner.close();
-    }
-     @Override
-    public String toString() {
-    	
-    	return super.toString();
+        Solicitacao solicitacao = new Solicitacao(
+                bs.getLaboratorios().get(0),
+                bs.getProfessores().get(0),
+                bs.getDisciplinas().get(0),
+                bs.getAlunos(5, 1),
+                LocalDateTime.now(),
+                90
+        );
+
+        System.out.println("Solicitação: " + solicitacao);
+
+        Reserva reserva = new Reserva(solicitacao, SituacaoReserva.APROVADA, LocalDateTime.now(), 90);
+
+        System.out.println("Reserva: " + reserva);
     }
 }
