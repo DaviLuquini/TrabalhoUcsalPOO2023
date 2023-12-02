@@ -1,73 +1,54 @@
 import java.util.Date;
 
+import entidades.Disciplina;
+import entidades.Professor;
+import entidades.Solicitacao;
+
+import java.time.LocalDateTime;
+
 public class Reserva implements IReserva {
+    private final String id;
+    private final Solicitacao solicitacao;
+    private final SituacaoReserva situacao;
+    private final LocalDateTime diaDaReserva;
+    private final int duracao;
 
-    private int id;
-    private Solicitacao solicitacao;
-    private SituacaoReserva situacao;
-    private Date diaDaReserva;
-    private int duracao;
-    private Professor professor;
-    private Disciplina disciplina;
-    private Date dataLiberacao;
-
-
-    public Reserva(int id, Solicitacao solicitacao, SituacaoReserva situacao, Date diaDaReserva, int duracao, Professor professor, Disciplina disciplina, Date dataLiberacao) {
-        this.id = id;
+    public Reserva(Solicitacao solicitacao, SituacaoReserva situacao, LocalDateTime diaDaReserva, int duracao) {
+        this.id = "id-" + solicitacao.getId();  
         this.solicitacao = solicitacao;
         this.situacao = situacao;
         this.diaDaReserva = diaDaReserva;
         this.duracao = duracao;
-        this.professor = professor;
-        this.disciplina = disciplina;
-        this.dataLiberacao = dataLiberacao;
     }
 
-
-    public int getId() {
+    @Override
+    public String getId() {
         return id;
     }
 
+    @Override
     public Solicitacao getSolicitacao() {
         return solicitacao;
     }
 
+    @Override
     public SituacaoReserva getSituacao() {
         return situacao;
     }
 
-    public Date getDiaDaReserva() {
+    @Override
+    public LocalDateTime getDiaDaReserva() {
         return diaDaReserva;
     }
 
+    @Override
     public int getDuracao() {
         return duracao;
     }
 
-    public Professor getProfessor() {
-        return professor;
-    }
-
-    public Disciplina getDisciplina() {
-        return disciplina;
-    }
-
-    public Date getDataLiberacao() {
-        return dataLiberacao;
-    }
-
- 
-
-
+    @Override
     public String toString() {
-        return "Reserva [id=" + id +
-                ", solicitacao=" + solicitacao +
-                ", situacao=" + situacao +
-                ", diaDaReserva=" + diaDaReserva +
-                ", duracao=" + duracao +
-                ", professor=" + professor +
-                ", disciplina=" + disciplina +
-                ", dataLiberacao=" + dataLiberacao +
-                ']';
+        return "Reserva [id=" + id + ", solicitacao=" + solicitacao + ", situacao=" + situacao +
+               ", diaDaReserva=" + diaDaReserva + ", duracao=" + duracao + "]";
     }
 }
