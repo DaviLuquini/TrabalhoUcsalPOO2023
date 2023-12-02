@@ -2,7 +2,7 @@ package entidades;
 
 public class Pessoa {
   
-private String nome;
+	private String nome;
 	private boolean status;
 	public String getNome() {
 		return nome;
