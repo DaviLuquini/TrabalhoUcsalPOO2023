@@ -1,5 +1,6 @@
 package entidades;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Solicitacao {
@@ -29,11 +30,12 @@ public class Solicitacao {
 	public void setDisciplina(Disciplina disciplina) {
 		this.disciplina = disciplina;
 	}
-	public List<Aluno> getGetAlunos() {
-		return getAlunos;
+
+	public List<Aluno> getAlunos() {
+		return alunos;
 	}
-	public void setGetAlunos(List<Aluno> getAlunos) {
-		this.getAlunos = getAlunos;
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
 	}
 	public LocalDate getData() {
 		return data;
