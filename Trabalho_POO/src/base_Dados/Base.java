@@ -15,20 +15,23 @@ public class Base implements IBase {
 
 	QTDE_DEPARTAMENTOS = 3,
 	QTDE_PROFESSORES = 15,
-	QTDE_LABORATORIOS = 12;
-
+	QTDE_LABORATORIOS = 12,
+	QTDE_DISCIPLINAS = 10,
+	QTDE_ALUNOS = 30;
 
 	private List<Laboratorio> laboratorios;
-	private List<Departamento> Departamentos;
-	private List<Disciplina> Disciplina;
-	private List<Professor> Professores;
-	private List<Aluno> Alunos;
+	private List<Departamento> departamentos;
+	private List<Disciplina> disciplinas;
+	private List<Professor> professores;
+	private List<Aluno> alunos;
 
 
 	private void laboratorios() {
 		this.laboratorios = new ArrayList<Laboratorio>();
 		Laboratorio lab;
-		for (int i = 0, ctle = 0; i < QTDE_LABORATORIOS; i++, ctle++) {
+		
+		try {
+		for (int i = 0, ctle = 1; i < QTDE_LABORATORIOS; i++, ctle++) {
 			lab = new Laboratorio();
 			lab.setId(ctle);
 			if(ctle == 1 || ctle == 10) {
@@ -38,21 +41,153 @@ public class Base implements IBase {
 			} else if(ctle >7 &&  ctle <=9 || ctle > 10 && ctle <=12) {
 				lab.setCapacidade(15);
 			}
-			lab.setStatus(false);
+			lab.setStatus(true);
 			this.laboratorios.add(lab);
 		}
+	}catch(Exception e){
+		e.printStackTrace();
+		}
+	} 
+		
+	private void departamentos() {
+		this.departamentos = new ArrayList<Departamento>();
+		Departamento dep;
+		
+		try {
+		for (int i = 0, ctle = 1; i < QTDE_DEPARTAMENTOS; i++, ctle++) {
+			dep = new Departamento();
+			dep.setId(ctle);
+			if(ctle == 1){
+			dep.setSigla("E.S");	
+			dep.setDescricao("Engenharia de Software");
+			} else if(ctle == 2 ) {
+			dep.setId(ctle);
+			dep.setSigla("C.A.D");
+			dep.setDescricao("Computacao de alto desempenho");
+			} else if(ctle == 2) {
+			dep.setId(ctle);
+			dep.setSigla("I.C");
+			dep.setDescricao("Infraestrutura computacional");
+				}
+			this.departamentos.add(dep);
+			
+		}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
+	
+	private void disciplinas() {
+		this.disciplinas = new ArrayList<Disciplina>();
+		Disciplina disc;
+		
+		try {
+			for (int i = 0, ctle = 1; i < QTDE_DISCIPLINAS; i++, ctle++) {
+				disc = new Disciplina();
+				disc.setId(ctle);
+				if(ctle == 1) {
+					disc.setSigla("BES005");
+					disc.setDescricao("Logica de programacao e algoritmos");
+				} else if(ctle == 2) {
+					disc.setSigla("BES006");
+					disc.setDescricao("Estrutura de dados");
+				} else if(ctle == 3) {
+					disc.setSigla("BES008");
+					disc.setDescricao("Programacao orientada a objetos");
+				} else if(ctle == 4) {
+					disc.setSigla("BES011");
+					disc.setDescricao("Banco de dados");
+				} else if(ctle == 5) {
+					disc.setSigla("BES011");
+					disc.setDescricao("Engenharia de requisitos");
+				} else if(ctle == 6) {
+					disc.setSigla("BES020");
+					disc.setDescricao("Programacao para dispositivos moveis");
+				} else if(ctle == 7) {
+					disc.setSigla("BES026");
+					disc.setDescricao("Sistemas distribuidos");
+				} else if(ctle == 8) {
+					disc.setSigla("BES038");
+					disc.setDescricao("Inteligencia artificial");
+				} else if(ctle == 9) {
+					disc.setSigla("BES049");
+					disc.setDescricao("Programacao web");
+				} else if(ctle == 10) {
+					disc.setSigla("BES049");
+					disc.setDescricao("Programacao front end");
+				}
+				disc.setStatus(true);
+				this.disciplinas.add(disc);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	private void professores(List<Departamento> dep) {
+		this.professores = new ArrayList<Professor>();
+		Professor prof; 
+			
+			try {
+				for (int i = 0, ctle = 1; i < QTDE_PROFESSORES; i++, ctle++) {
+					prof= new Professor();
+					
+					prof.setId(ctle);
+					prof.setNome("Professor" + ctle);
+					if (ctle <=5){
+						prof.setDepartamento(dep.get(0));
+						} else if (ctle >5 &&ctle <=10) {
+							prof.setDepartamento(dep.get(1));
+						} else if(ctle>10) {
+							prof.setDepartamento(dep.get(2));
+						}
+					prof.setStatus(true);
+					this.professores.add(prof);
+					
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
 
+			}
+		
+	}
+	
+	private void alunos() {
+		this.alunos = new ArrayList<Aluno>();
+		Aluno aln;
+		
+		try {
+			for (int i = 0, ctle = 1; i < QTDE_ALUNOS; i++, ctle++) {
+				aln = new Aluno();
+				
+				aln.setId(ctle);
+				aln.setNome("Aluno" + ctle);
+				aln.setMatricula(20230200+ ctle);
+				aln.setStatus(true);
+				this.alunos.add(aln);
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public List<Departamento> getDepartamentos() {
-		
-		return null;
+		departamentos();
+		return this.departamentos;
 	}
 
 	@Override
 	public List<Disciplina> getDisciplina() {
-		// TODO Auto-generated method stub
-		return null;
+		disciplinas();
+		return this.disciplinas;
 	}
 	
 	@Override
@@ -62,14 +197,19 @@ public class Base implements IBase {
 	}
 
 	@Override
-	public List<Professor> getProfessores() {
-		
-		return null;
+	public List<Professor> getProfessores(List<Departamento> Dep) {
+		professores(Dep);
+		return this.professores;
 	}
 
 	@Override
-	public List<Aluno> getAlunos(int qtde, int inicio) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Aluno> getAlunos() {
+		alunos();
+		return this.alunos;
 	}
+
+
+
+	
 }
+
