@@ -10,10 +10,13 @@ import entidades.Professor;
 
 public interface IBase {
 	
+	
 	List<Laboratorio> getlaboratorios();
 	List<Departamento> getDepartamentos();
 	List<Disciplina> getDisciplina();
-	List<Professor> getProfessores();
-	List<Aluno> getAlunos(int qtde, int inicio);
-
+	List<Professor> getProfessores(List<Departamento> Dep);
+	List<Aluno> getAlunos();
+	
 }
+
+
