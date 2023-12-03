@@ -3,7 +3,7 @@ package entidades;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Solicitacao {
+public class Solicitacao implements Reservavel{
 	
 	private Laboratorio laboratorio;
 	private Professor professor;
@@ -54,6 +54,11 @@ public class Solicitacao {
 	public String toString() {
 	
 		return super.toString();
+	}
+	@Override
+	public boolean estaDisponivel(LocalDate data, int tempoEmMinutos) {
+		 // Retorna true se estiver disponível, false caso contrário
+		return false;
 	}
 	
 
