@@ -7,7 +7,7 @@ public class Solicitacao {
 	private Laboratorio laboratorio;
 	private Professor professor;
 	private Disciplina disciplina;
-	private List<Aluno>getAlunos;
+	private List<Aluno> alunos;
 	private LocalDate data;
 	private int tempo;
 	
