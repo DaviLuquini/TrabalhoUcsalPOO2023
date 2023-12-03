@@ -1,21 +1,43 @@
-class ValidarSolicitacao {
+package entidadess;
 
-    public ResultadoSolicitacao validar(Solicitacao solicitacao) {
+import java.util.List;
 
-        if (solicitacao.getProfessor().getReservasAprovadas() >= 6) {
-            return ResultadoSolicitacao.LIMITE_ATINGIDO;
+public class ValidarSolicitacao {
+    private List<String> reservasEfetivadas;
+    Solicitacao solicitacao = new Solicitacao();
+    Reserva reserva = new Reserva();
+    
+    public void validarSolicitacao() {
+        if (solicitacao.getLaboratorio().contains(laboratorio)) {
+        	System.out.println("Uma reserva ja foi feita com alguma das suas preferencias");
+            break;
+        } else {
+        	reservasEfetivadas.add(reserva);
         }
-
-
-        for (Solicitacao reserva : solicitacao.getLaboratorio().getReservas()) {
-            if (reserva.getSituacao() == ResultadoSolicitacao.APROVADO) {
-                if (solicitacao.getData().equals(reserva.getData()) &&
-                        solicitacao.getTempo() == reserva.getTempo()) {
-                    return ResultadoSolicitacao.CONFLITO;
-                }
-            }
+        
+        if (solicitacao.getDisciplina().contains(disciplina)) {
+        	System.out.println("Uma reserva ja foi feita com alguma das suas preferencias");
+        	break;
+        } else {
+        	reservasEfetivadas.add(reserva);
         }
-
-        return ResultadoSolicitacao.APROVADO;
+        if (solicitacao.getAlunos().contains(aluno)) {
+        	System.out.println("Uma reserva ja foi feita com alguma das suas preferencias");
+        	break;
+        } else {
+        	reservasEfetivadas.add(reserva);
+        }
+        if (solicitacao.getData() != null && solicitacao.getData().equals(data)) {
+        	System.out.println("Uma reserva ja foi feita com alguma das suas preferencias");
+        	break;
+        } else {
+        	reservasEfetivadas.add(reserva);
+        }
+        if (solicitacao.getTempo().contains(tempo)) {
+        	System.out.println("Uma reserva ja foi feita com alguma das suas preferencias");
+        	break;
+        } else {
+        	reservasEfetivadas.add(reserva);
+        }
     }
 }
