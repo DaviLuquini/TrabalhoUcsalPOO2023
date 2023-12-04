@@ -1,49 +1,42 @@
 package entidades;
 
+//criação de um objeto.
 public class Laboratorio {
 	
-		private Integer id;
+	private int id;
 	private int capacidade;
-	private int maquina;
 	private boolean status;
 	
-	
-
-	public int getMaquina() {
-		return maquina;
+	public int getId() {
+		return id;
 	}
-
-	public void setMaquina(int maquina) {
-		this.maquina = maquina;
+	public void setId(int id) {
+		this.id = id;
 	}
-
-	public boolean isStatus() {
-		return status;
-	}
-
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
-
 	public int getCapacidade() {
 		return capacidade;
 	}
-
 	public void setCapacidade(int capacidade) {
 		this.capacidade = capacidade;
 	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
+	
+	
+	public boolean getStatus() {
+		return status;
 	}
 	
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	
+	@Override
 	public String toString() {
-		return "Laboratorio [id=" + id + ", capacidade=" + capacidade + ", maquina=" + maquina + ", status=" + status
+		return "Laboratório [id=" + id + ", status=" + status
 				+ "]";
 	}
+	
+	
+	
+	
 	
 }

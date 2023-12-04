@@ -1,5 +1,6 @@
 package base_Dados;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,24 +9,31 @@ import entidades.Departamento;
 import entidades.Disciplina;
 import entidades.Laboratorio;
 import entidades.Professor;
+import funcaoReserva.Reserva;
 
 public class Base implements IBase {
 
 	private final Integer
-
+	
+	//Declarando variaveis fixas para ajudar nos loops com o "for".
 	QTDE_DEPARTAMENTOS = 3,
 	QTDE_PROFESSORES = 15,
 	QTDE_LABORATORIOS = 12,
 	QTDE_DISCIPLINAS = 10,
 	QTDE_ALUNOS = 30;
-
+	
+	//criação das listas onde os objetos serão adicionados.
 	private List<Laboratorio> laboratorios;
 	private List<Departamento> departamentos;
 	private List<Disciplina> disciplinas;
 	private List<Professor> professores;
 	private List<Aluno> alunos;
+	private List<Reserva> reservas;
 
-
+	
+	/*Em geral todos métodos seguem a mesma lógica de loop com for para a criação dos objetos, 
+	  porém cada método possui uma implementação do loop que seja adequada para o que foi pedido. 
+	 */
 	private void laboratorios() {
 		this.laboratorios = new ArrayList<Laboratorio>();
 		Laboratorio lab;
@@ -35,7 +43,7 @@ public class Base implements IBase {
 			lab = new Laboratorio();
 			lab.setId(ctle);
 			if(ctle == 1 || ctle == 10) {
-			lab.setCapacidade(15);
+			lab.setCapacidade(30);
 			} else if(ctle >=2 && ctle <= 7) {
 				lab.setCapacidade(20);
 			} else if(ctle >7 &&  ctle <=9 || ctle > 10 && ctle <=12) {
@@ -61,11 +69,9 @@ public class Base implements IBase {
 			dep.setSigla("E.S");	
 			dep.setDescricao("Engenharia de Software");
 			} else if(ctle == 2 ) {
-			dep.setId(ctle);
 			dep.setSigla("C.A.D");
 			dep.setDescricao("Computacao de alto desempenho");
-			} else if(ctle == 2) {
-			dep.setId(ctle);
+			} else if(ctle == 3) {
 			dep.setSigla("I.C");
 			dep.setDescricao("Infraestrutura computacional");
 				}
@@ -99,7 +105,7 @@ public class Base implements IBase {
 					disc.setSigla("BES011");
 					disc.setDescricao("Banco de dados");
 				} else if(ctle == 5) {
-					disc.setSigla("BES011");
+					disc.setSigla("BES012");
 					disc.setDescricao("Engenharia de requisitos");
 				} else if(ctle == 6) {
 					disc.setSigla("BES020");
@@ -114,7 +120,7 @@ public class Base implements IBase {
 					disc.setSigla("BES049");
 					disc.setDescricao("Programacao web");
 				} else if(ctle == 10) {
-					disc.setSigla("BES049");
+					disc.setSigla("BES048");
 					disc.setDescricao("Programacao front end");
 				}
 				disc.setStatus(true);
@@ -129,32 +135,30 @@ public class Base implements IBase {
 	}
 	
 	private void professores(List<Departamento> dep) {
-		this.professores = new ArrayList<Professor>();
-		Professor prof; 
-			
-			try {
-				for (int i = 0, ctle = 1; i < QTDE_PROFESSORES; i++, ctle++) {
-					prof= new Professor();
-					
-					prof.setId(ctle);
-					prof.setNome("Professor" + ctle);
-					if (ctle <=5){
-						prof.setDepartamento(dep.get(0));
-						} else if (ctle >5 &&ctle <=10) {
-							prof.setDepartamento(dep.get(1));
-						} else if(ctle>10) {
-							prof.setDepartamento(dep.get(2));
-						}
-					prof.setStatus(true);
-					this.professores.add(prof);
-					
-				}
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-		
+	    this.professores = new ArrayList<Professor>();
+	    Professor prof; 
+	       
+	    try {
+	        for (int i = 0, ctle = 1; i < QTDE_PROFESSORES; i++, ctle++) {
+	            prof= new Professor();
+	           
+	            prof.setId(ctle);
+	            prof.setNome("Professor" + ctle);
+	            if (ctle <=5){
+	                prof.setDepartamento(dep.get(0));
+	                } else if (ctle >5 &&ctle <=10) {
+	                    prof.setDepartamento(dep.get(1));
+	                } else if(ctle>10) {
+	                    prof.setDepartamento(dep.get(2));
+	                }
+	            prof.setStatus(true);
+	            this.professores.add(prof);
+	           
+	        }
+	    } catch (Exception e) {
+	       e.printStackTrace();
+	        }
+	        
 	}
 	
 	private void alunos() {
@@ -178,6 +182,33 @@ public class Base implements IBase {
 		}
 	}
 	
+	private void reservas(){
+		this.reservas = new ArrayList<Reserva>();
+		Reserva res;
+		
+		try {
+			for (int i = 0, ctle = 1; i < 10; i++, ctle++) {
+	             res = new Reserva();
+	            
+	            res.setId(ctle);
+	            res.setLaboratorio(laboratorios.get(i % laboratorios.size()));
+	            res.setProfessor(professores.get(i % professores.size()));
+	            res.setDisciplina(disciplinas.get(i % disciplinas.size()));
+	            res.setMinutos((i + 1) * 10); 
+	            res.setDiaReserva(LocalDateTime.now().plusDays(i)); 
+
+	           
+	            this.reservas.add(res);
+	        }
+			
+			
+		} catch (Exception e) {
+			
+		}
+	}
+	
+	
+	//implementação dos métodos da interface que ajudarão a acessar os valores em outras classes
 	@Override
 	public List<Departamento> getDepartamentos() {
 		departamentos();
@@ -208,8 +239,13 @@ public class Base implements IBase {
 		return this.alunos;
 	}
 
+	@Override
+	public List<Reserva> getReservas() {
+		reservas();
+		return this.reservas;
+	}
+
 
 
 	
 }
-

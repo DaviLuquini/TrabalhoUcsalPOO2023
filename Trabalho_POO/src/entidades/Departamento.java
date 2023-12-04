@@ -1,15 +1,17 @@
 package entidades;
 
+//criação de um objeto.
 public class Departamento {
-
-  private Integer id;
+	
+	private int id;
 	private String sigla;
 	private String descricao;
+
 	
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getSigla() {
@@ -24,7 +26,10 @@ public class Departamento {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public String toString() {
-		return "Departamento [id=" + id + ", sigla=" + sigla + ", descricao=" + descricao + "]";
-	}
+	
+
+@Override
+public String toString() {
+	return "Departamento [id=" + id + ", sigla=" + sigla + ", descricao=" + descricao + "]";
+}
 }

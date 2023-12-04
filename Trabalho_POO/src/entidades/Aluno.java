@@ -1,36 +1,29 @@
 package entidades;
 
-public class Aluno extends Pessoa{
-  
-  	private Integer id;
-	private Integer matricula;
-	public Integer getId() {
+//criação de um objeto
+public class Aluno extends Pessoa {
+	private int id;
+	private int matricula;
+	
+	public int getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-	public Integer getMatricula() {
+	public int getMatricula() {
 		return matricula;
 	}
-	public void setMatricula(Integer matricula) {
+	public void setMatricula(int matricula) {
 		this.matricula = matricula;
 	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getStatus() {
-		return Status;
-	}
-	public void setStatus(String status) {
-		Status = status;
-	}
 	
+	@Override
 	public String toString() {
-			return "Aluno [id=" + id + ", matricula=" + matricula + ", nome=" + nome + ", Status=" + Status + "]";
+		return "Aluno [id=" + id + ", matricula=" + matricula + "]";
 	}
 	
+	
+	
+
 }
